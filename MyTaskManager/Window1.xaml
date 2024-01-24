@@ -125,7 +125,8 @@
                         Grid.Row="1">
                 <Button x:Name="userViewButton"
                         Content="User Menu"
-                        Foreground="White"
+                        Foreground="Black"
+                        FontWeight="Bold"
                         FontSize="16"
                         FontFamily="Montserrat"
                         Cursor="Hand" Click="userViewButton_Click">
@@ -143,7 +144,8 @@
                 </Button>
                 <Button x:Name="taskViewButton"
                         Content="Task Menu"
-                        Foreground="White"
+                        FontWeight="Bold"
+                        Foreground="Black"
                         FontSize="16"
                         FontFamily="Montserrat"
                         Cursor="Hand"
@@ -163,7 +165,8 @@
                 </Button>
                 <Button x:Name="projectViewButton"
                         Content="Project Menu"
-                        Foreground="White"
+                        FontWeight="Bold"
+                        Foreground="Black"
                         FontSize="16"
                         FontFamily="Montserrat"
                         Cursor="Hand"
@@ -186,16 +189,7 @@
             <ContentControl x:Name="UserContentView"
                             Grid.Row="1"
                             Margin="5,5,5,5"
-                            HorizontalAlignment="Right"
-                            >
-
-                <!--<local:MainView
-                 Grid.Row="1"
-                 HorizontalAlignment="Right"
-                 VerticalAlignment="Bottom"
-                 Width="800"
-                 Height="450"
-                 Margin="10,10,10,10"/>-->
+                            HorizontalAlignment="Right">
             </ContentControl>
 
         </Grid>
