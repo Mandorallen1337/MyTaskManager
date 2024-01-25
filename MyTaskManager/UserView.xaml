@@ -46,7 +46,7 @@
                       Height="200"
                       VerticalAlignment="Top"
                       HorizontalAlignment="Center"
-                      Margin="10,20,10,0">                
+                      Margin="10,20,10,0" SelectionChanged="userDataGrid_SelectionChanged">                
             </DataGrid>
 
             <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5,0,0">
@@ -73,17 +73,32 @@
                 <TextBox x:Name="usernameTextBox"
                          Width="200"
                          Height="20"
-                         Margin="5"/>
+                         Margin="5"
+                         CaretBrush="AntiqueWhite"
+                         BorderBrush="DarkGray"
+                         Background="Transparent"
+                         Foreground="White"
+                         BorderThickness="0,0,0,1"/>
                 
                 <TextBox x:Name="emailBox"
                          Width="200"
                          Height="20"
-                         Margin="5"/>
+                         Margin="5"
+                         CaretBrush="AntiqueWhite"
+                         BorderBrush="DarkGray"
+                         Background="Transparent"
+                         Foreground="White"
+                         BorderThickness="0,0,0,1"/>
                 
                 <TextBox x:Name="passwordBox"
                          Width="200"
                          Height="20"
-                         Margin="5"/>
+                         Margin="5"
+                         CaretBrush="AntiqueWhite"
+                         BorderBrush="DarkGray"
+                         Background="Transparent"
+                         Foreground="White"
+                         BorderThickness="0,0,0,1"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" 
@@ -96,7 +111,8 @@
                         FontWeight="Bold"
                         Width="100"
                         Height="20"
-                        Margin="10,10,0,0">
+                        Margin="10,10,0,0"
+                        Click="addButton_Click">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#da34ae"/>
@@ -115,7 +131,8 @@
                         FontWeight="Bold"
                         Width="100"
                         Height="20"
-                        Margin="10,10,0,0">
+                        Margin="10,10,0,0"
+                        Click="updateButton_Click">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#da34ae"/>
@@ -135,7 +152,8 @@
                         FontWeight="Bold"
                         Width="100"
                         Height="20"
-                        Margin="10,10,0,0">
+                        Margin="10,10,0,0"
+                        Click="deleteButton_Click">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#da34ae"/>

@@ -146,5 +146,77 @@ namespace MyTaskManager
             }
             return tasks;
         }
+        public void AddUser(string username, string password, string email)
+        {
+            using(MySqlConnection db = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    db.Open();
+                    using(MySqlCommand cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = db;
+                        cmd.CommandText = "INSERT INTO users(username, password, email) VALUES(@username, @password, @email)";
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.ExecuteNonQuery();
+                        
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+        
+        public void DeleteUser(int id)
+        {
+            using(MySqlConnection db = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    db.Open();
+                    using(MySqlCommand cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = db;
+                        cmd.CommandText = "DELETE FROM users WHERE user_id = @id";
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        public void UpdateUser(int id, string username, string password, string email)
+        {
+            using(MySqlConnection db = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    db.Open();
+                    using(MySqlCommand cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = db;
+                        cmd.CommandText = "UPDATE users SET username = @username, email = @email, password = @password WHERE user_id = @id";
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            
+        }
     }
 }

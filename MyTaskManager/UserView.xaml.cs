@@ -28,5 +28,71 @@ namespace MyTaskManager
             Users = db.GetUsers();
             userDataGrid.ItemsSource = Users;
         }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (usernameTextBox.Text != "" && emailBox.Text != "" && passwordBox.Text != "")
+            {
+                string username = usernameTextBox.Text;
+                string password = passwordBox.Text;
+                string email = emailBox.Text;
+                db.AddUser(username, password, email);
+                Users = db.GetUsers();
+                userDataGrid.ItemsSource = Users;
+
+            }
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (userDataGrid.SelectedItem != null)
+            {
+                User user = (User)userDataGrid.SelectedItem;
+                db.DeleteUser(user.Id);
+                Users = db.GetUsers();
+                userDataGrid.ItemsSource = Users;
+            }
+
+
+
+
+
+        }
+
+        private void userDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (userDataGrid.SelectedItem != null)
+            {
+                User user = (User)userDataGrid.SelectedItem;
+                usernameTextBox.Text = user.Username;
+                passwordBox.Text = user.Password;
+                emailBox.Text = user.Email;
+            }
+            else
+            {
+                usernameTextBox.Text = "";
+                passwordBox.Text = "";
+                emailBox.Text = "";
+            }
+
+
+        }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            User selectedUser = (User)userDataGrid.SelectedItem;
+            if (selectedUser != null)
+            {
+                string username = usernameTextBox.Text;
+                string password = passwordBox.Text;
+                string email = emailBox.Text;
+                db.UpdateUser(selectedUser.Id, username, password, email);
+
+                userDataGrid.ItemsSource = db.GetUsers();
+            }
+
+        }
     }
 }
