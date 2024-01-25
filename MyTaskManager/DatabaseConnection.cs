@@ -218,5 +218,73 @@ namespace MyTaskManager
             }
             
         }
+
+        public void AddTask(string taskName, string taskDescription)
+        {
+            using(MySqlConnection db = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    db.Open();
+                    using(MySqlCommand cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = db;
+                        cmd.CommandText = "INSERT INTO tasks(task_name, task_description) VALUES(@taskName, @taskDescription)";
+                        cmd.Parameters.AddWithValue("@taskName", taskName);
+                        cmd.Parameters.AddWithValue("@taskDescription", taskDescription);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+        public void DeleteTask(int id)
+        {
+            using(MySqlConnection db = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    db.Open();
+                    using(MySqlCommand cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = db;
+                        cmd.CommandText = "DELETE FROM tasks WHERE task_id = @id";
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        public void UpdateTask(int id, string taskName, string taskDescription)
+        {
+            using(MySqlConnection db = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    db.Open();
+                    using(MySqlCommand cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = db;
+                        cmd.CommandText = "UPDATE tasks SET task_name = @taskName, task_description = @taskDescription WHERE task_id = @id";
+                        cmd.Parameters.AddWithValue("@taskName", taskName);
+                        cmd.Parameters.AddWithValue("@taskDescription", taskDescription);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
     }
 }

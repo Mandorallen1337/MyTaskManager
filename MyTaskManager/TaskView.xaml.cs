@@ -28,5 +28,52 @@ namespace MyTaskManager
             Tasks = db.GetTasks();
             taskDataGrid.ItemsSource = Tasks;
         }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (taskNameBox.Text != "" && descriptionBox.Text != "")
+            {
+                string taskName = taskNameBox.Text;
+                string taskDescription = descriptionBox.Text;
+                
+                db.AddTask(taskName, taskDescription);
+                Tasks = db.GetTasks();
+                taskDataGrid.ItemsSource = Tasks;
+
+            }
+        }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (taskDataGrid.SelectedItem != null)
+            {
+                Task task = (Task)taskDataGrid.SelectedItem;
+                db.UpdateTask(task.Id, taskNameBox.Text, descriptionBox.Text);
+                Tasks = db.GetTasks();
+                taskDataGrid.ItemsSource = Tasks;
+            }
+
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (taskDataGrid.SelectedItem != null)
+            {
+                Task task = (Task)taskDataGrid.SelectedItem;
+                db.DeleteTask(task.Id);
+                Tasks = db.GetTasks();
+                taskDataGrid.ItemsSource = Tasks;
+            }
+        }
+
+        private void taskDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (taskDataGrid.SelectedItem != null)
+            {
+                Task task = (Task)taskDataGrid.SelectedItem;
+                taskNameBox.Text = task.TaskName;
+                descriptionBox.Text = task.TaskDescription;
+            }
+        }
     }
 }
