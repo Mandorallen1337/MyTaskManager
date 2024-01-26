@@ -49,5 +49,10 @@ namespace MyTaskManager
         {
             UserContentView.Content = new TaskView();
         }
+
+        private void projectViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserContentView.Content = new ProjectView();
+        }
     }
 }

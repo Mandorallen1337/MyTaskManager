@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -284,6 +285,46 @@ namespace MyTaskManager
                 {
                     Console.WriteLine(ex.Message);
                 }
+            }
+        }
+        //Get all tasks for a users.
+        public List<object> GetUserTasks()
+        {
+            List<object> userTasks = new List<object>();
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT " +
+                             "tasks.task_id, " +
+                             "tasks.task_name, " +
+                             "tasks.task_description, " +
+                             "users.user_id, " +
+                             "users.username, " +                             
+                             "users.email " +
+                             "FROM " +
+                             "tasks " +
+                             "JOIN " +
+                             "task_user ON tasks.task_id = task_user.task_id " +
+                             "JOIN " +
+                             "users ON task_user.user_id = users.user_id;";
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    userTasks.Add(new
+                    {
+                        TaskId = reader.GetInt32(0),
+                        TaskName = reader.GetString(1),
+                        TaskDescription = reader.GetString(2),
+                        UserId = reader.GetInt32(3),
+                        Username = reader.GetString(4),                        
+                        Email = reader.GetString(5)
+                    });
+                }
+                reader.Close();
+                return userTasks;
+
             }
         }
     }
