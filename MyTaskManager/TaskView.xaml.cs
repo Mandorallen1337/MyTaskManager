@@ -22,12 +22,17 @@ namespace MyTaskManager
     {
         DatabaseConnection db = new DatabaseConnection();
         public List<Task> Tasks { get; set; } = new List<Task>();
+        public List<User> Users { get; set; } = new List<User>();
         public TaskView()
         {
             InitializeComponent();
             Tasks = db.GetTasks();
             taskDataGrid.ItemsSource = Tasks;
+            
+            
         }
+
+        
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
@@ -75,5 +80,8 @@ namespace MyTaskManager
                 descriptionBox.Text = task.TaskDescription;
             }
         }
+
+        
+        
     }
 }

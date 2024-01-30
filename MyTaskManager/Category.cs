@@ -15,7 +15,7 @@ namespace MyTaskManager
 
         public Category(int id, string categoryName)
         {
-            Id = Id;
+            Id = id;
             CategoryName = categoryName;
 
         }

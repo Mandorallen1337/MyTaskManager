@@ -21,5 +21,9 @@ namespace MyTaskManager
             Email = email;
             Password = password;
         }
+        public override string ToString()
+        {
+            return Username;
+        }
     }
 }

@@ -27,8 +27,7 @@ namespace MyTaskManager
         public MainView()
         {
             InitializeComponent();
-            Task_user = db.GetAll();
-            mainDataGrid.ItemsSource = Task_user;
+            
 
         }
     }

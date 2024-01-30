@@ -54,5 +54,23 @@ namespace MyTaskManager
         {
             UserContentView.Content = new ProjectView();
         }
+
+        private void CategoryViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserContentView.Content = new CategoryView();
+        }
+
+        private void connectButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserContentView.Content = new CombineView();
+        }
+
+        private void logoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
     }
 }

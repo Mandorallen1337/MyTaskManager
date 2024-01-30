@@ -28,7 +28,21 @@ namespace MyTaskManager
             InitializeComponent();
             
             List<Object> userTasks = db.GetUserTasks();
-            projectDataGrid.ItemsSource = userTasks;
+            projectDataGrid.ItemsSource = userTasks;            
         }
+
+       
+
+        private void searchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (searchBox.Text != "")
+            {
+                string search = searchBox.Text;
+                db.SearchDataBase(search);
+                
+            }
+
+        }
+        
     }
 }
