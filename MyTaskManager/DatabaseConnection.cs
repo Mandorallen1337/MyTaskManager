@@ -86,7 +86,7 @@ namespace MyTaskManager
             }
             return users;
         }
-        
+
         private MySqlDataReader RunQuery(string query, MySqlConnection connection)
         {
             MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -121,7 +121,45 @@ namespace MyTaskManager
             }
             return tasks;
         }
-        public void AddUser(string username, string password, string email)
+        //Add user if username is not taken.
+        public bool AddUser(string username, string password, string email)
+        {
+            bool userAdded = false;
+            if (!IsUsernameTaken(username))
+            {
+                using (MySqlConnection db = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+                        db.Open();
+                        using (MySqlCommand cmd = new MySqlCommand())
+                        {
+                            cmd.Connection = db;
+                            cmd.CommandText = "INSERT INTO users(username, password, email) VALUES(@username, @password, @email)";
+                            cmd.Parameters.AddWithValue("@username", username);
+                            cmd.Parameters.AddWithValue("@password", password);
+                            cmd.Parameters.AddWithValue("@email", email);
+                            cmd.ExecuteNonQuery();
+
+                        }
+                        userAdded = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Username already taken!");
+            }
+            return userAdded;
+        }   
+
+        //Check if username is taken.
+        private bool IsUsernameTaken(string username)
         {
             using (MySqlConnection db = new MySqlConnection(connectionString))
             {
@@ -131,21 +169,21 @@ namespace MyTaskManager
                     using (MySqlCommand cmd = new MySqlCommand())
                     {
                         cmd.Connection = db;
-                        cmd.CommandText = "INSERT INTO users(username, password, email) VALUES(@username, @password, @email)";
+                        cmd.CommandText = "SELECT COUNT(*) FROM users WHERE username = @username";
                         cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
-                        cmd.Parameters.AddWithValue("@email", email);
-                        cmd.ExecuteNonQuery();
-
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count > 0;
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    return true; 
                 }
             }
-        }
 
+
+        }
         public void DeleteUser(int id)
         {
             using (MySqlConnection db = new MySqlConnection(connectionString))
@@ -262,7 +300,7 @@ namespace MyTaskManager
             }
         }
         
-        public List<object> GetUserTasks()
+        public List<object> GetUserTasksAndCategory()
         {
             List<object> userTasks = new List<object>();
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -363,6 +401,7 @@ namespace MyTaskManager
                         cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.ExecuteNonQuery();
+
                     }
                 }
                 catch (Exception ex)
@@ -466,7 +505,8 @@ namespace MyTaskManager
                           JOIN users ON task_user.user_id = users.user_id
                           LEFT JOIN category ON task_user.category_id = category.category_id
                           WHERE tasks.task_name LIKE @search
-                             OR users.username LIKE @search";
+                             OR users.username LIKE @search
+                             OR category.category_name LIKE @search";
                     using (MySqlCommand cmd = new MySqlCommand(sql, db))
                     {
                         cmd.Parameters.AddWithValue("@search", "%" + search + "%");
@@ -479,7 +519,7 @@ namespace MyTaskManager
                                 message.AppendLine($"Task Description: {reader.GetString(2)}");
                                 message.AppendLine($"Assigned User: {reader.GetString(3)}");
                                 message.AppendLine($"Category: {reader.GetString(4)}");
-                                message.AppendLine(); // Add empty line for separation
+                                message.AppendLine(); // Empty line for separation
                             }
                         }
                     }                    
@@ -493,48 +533,33 @@ namespace MyTaskManager
             }
         }
 
-        public string RetriveTaskDetalis(User selectedUser, Task selectedTask, Category selectedCategory)
+       public List<Connection> GetConnections()
         {
-            
-            StringBuilder message = new StringBuilder();
+            List<Connection> connections = new List<Connection>();
             using (MySqlConnection db = new MySqlConnection(connectionString))
             {
                 try
                 {
                     db.Open();
-                    string sql = @"SELECT tasks.task_id, tasks.task_name, tasks.task_description, 
-                                 users.username, category.category_name
-                                 FROM tasks
-                                 JOIN task_user ON tasks.task_id = task_user.task_id
-                                 JOIN users ON task_user.user_id = users.user_id
-                                 LEFT JOIN category ON task_user.category_id = category.category_id
-                                 WHERE tasks.task_name LIKE @search
-                                 OR users.username LIKE @search";
+                    string sql = @"SELECT task_user.task_id, task_user.user_id, task_user.category_id
+                          FROM task_user";
                     using (MySqlCommand cmd = new MySqlCommand(sql, db))
                     {
-                        cmd.Parameters.AddWithValue("@search", "%" + selectedUser + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                message.AppendLine($"Task ID: {reader.GetInt32(0)}");
-                                message.AppendLine($"Task Name: {reader.GetString(1)}");
-                                message.AppendLine($"Task Description: {reader.GetString(2)}");
-                                message.AppendLine($"Assigned User: {reader.GetString(3)}");
-                                message.AppendLine($"Category: {reader.GetString(4)}");
-                                message.AppendLine(); 
+                                connections.Add(new Connection(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2)));
                             }
                         }
                     }
-                    
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);                    
-                    MessageBox.Show("An error occurred while searching the database.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Console.WriteLine(ex.Message);
                 }
             }
-            return message.ToString();
+            return connections;
         }
     }
 }

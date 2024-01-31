@@ -114,10 +114,8 @@
     <Compile Include="CombineView.xaml.cs">
       <DependentUpon>CombineView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
     <Compile Include="DatabaseConnection.cs" />
-    <Compile Include="MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
     </Compile>
@@ -137,10 +135,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CombineView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

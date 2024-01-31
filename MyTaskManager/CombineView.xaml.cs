@@ -48,15 +48,38 @@ namespace MyTaskManager
 
             if(selectedUser != null && selectedTask != null && selectedCategory != null)
             {
-                string taskDetails = db.RetriveTaskDetalis(selectedUser, selectedTask, selectedCategory);
-                taskDetailsTextBlock.Text = taskDetails;
-                db.AssignTaskToCategoryAndUser(selectedUser.Id, selectedTask.Id, selectedCategory.Id);
-                MessageBox.Show("Connection created!");
+                if(ConnectionExists(selectedUser.Id, selectedTask.Id, selectedCategory.Id))
+                {
+                    return;
+                }
+                else
+                {
+                    db.AssignTaskToCategoryAndUser(selectedUser.Id, selectedTask.Id, selectedCategory.Id);
+                    MessageBox.Show("Connection created!");
+                    userComboBox.SelectedItem = null;
+                    taskComboBox.SelectedItem = null;
+                    categoryComboBox.SelectedItem = null;
+                }
+                
             }
             else
             {
                 MessageBox.Show("Please select a user, task and category!");
             }
+        }
+        private bool ConnectionExists(int userId, int taskId, int categoryId)
+        {
+            List<Connection> connections = db.GetConnections();
+            foreach(Connection connection in connections)
+            {
+                if(connection.UserId == userId && connection.TaskId == taskId && connection.CategoryId == categoryId)
+                {
+                    MessageBox.Show("Connection already exists!");
+                    return true;
+                }
+            }
+            return false;
+            
         }
     }
 }

@@ -39,6 +39,9 @@ namespace MyTaskManager
                 db.AddUser(username, password, email);
                 Users = db.GetUsers();
                 userDataGrid.ItemsSource = Users;
+                usernameTextBox.Text = "";
+                passwordBox.Text = "";
+                emailBox.Text = "";
 
             }
         }
@@ -52,11 +55,10 @@ namespace MyTaskManager
                 db.DeleteUser(user.Id);
                 Users = db.GetUsers();
                 userDataGrid.ItemsSource = Users;
+                usernameTextBox.Text = "";
+                passwordBox.Text = "";
+                emailBox.Text = "";
             }
-
-
-
-
 
         }
 
@@ -75,8 +77,6 @@ namespace MyTaskManager
                 passwordBox.Text = "";
                 emailBox.Text = "";
             }
-
-
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
@@ -91,6 +91,9 @@ namespace MyTaskManager
                 db.UpdateUser(selectedUser.Id, username, password, email);
 
                 userDataGrid.ItemsSource = db.GetUsers();
+                usernameTextBox.Text = "";
+                passwordBox.Text = "";
+                emailBox.Text = "";
             }
 
         }

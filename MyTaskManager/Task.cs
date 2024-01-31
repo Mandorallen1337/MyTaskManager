@@ -18,5 +18,9 @@ namespace MyTaskManager
             TaskName = taskName;
             TaskDescription = taskDescription;
         }
+        public override string ToString()
+        {
+            return TaskName;
+        }
     }
 }

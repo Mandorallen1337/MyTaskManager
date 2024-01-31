@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyTaskManager"
              mc:Ignorable="d">
+    
     <Border BorderThickness="5"
-        CornerRadius="30" >
+            CornerRadius="30"
+            Width="1000"
+            Height="600">
 
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -84,7 +87,7 @@
                         FontSize="18"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                    Click="connectButton_Click">
+                        Click="connectButton_Click">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#da34ae"/>
@@ -96,6 +99,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
+            
             <StackPanel Grid.Row="4" 
                         Grid.Column="1" 
                         Margin="5"
@@ -106,13 +110,13 @@
                            Margin="10" 
                            Foreground="White" 
                            FontSize="18"/>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <TextBlock x:Name="taskDetailsTextBlock" 
-                               Margin="10" 
-                               Foreground="White" 
-                               FontSize="18"
-                               TextWrapping="Wrap"/>
-                </ScrollViewer>
+                
+                <TextBlock x:Name="taskDetailsTextBlock" 
+                           Margin="10" 
+                           Foreground="White" 
+                           FontSize="18"
+                           TextWrapping="Wrap"/>
+                
             </StackPanel>
             
         </Grid>

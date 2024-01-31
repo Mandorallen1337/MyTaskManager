@@ -127,14 +127,14 @@
             <StackPanel HorizontalAlignment="Left"
                         Panel.ZIndex="1"
                         Height="400"
-                        Width="120"
+                        Width="170"
                         Margin="5,5,5,5"
                         Grid.Row="1">
                 <Button x:Name="userViewButton"
                         Content="User Menu"
                         Foreground="Black"
                         FontWeight="Bold"
-                        FontSize="16"
+                        FontSize="16"                        
                         FontFamily="Montserrat"
                         Cursor="Hand" Click="userViewButton_Click">
 
@@ -260,7 +260,6 @@
 
                 </ContentControl>
             
-
         </Grid>
 
     </Border>

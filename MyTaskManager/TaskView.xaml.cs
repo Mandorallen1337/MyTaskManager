@@ -44,6 +44,8 @@ namespace MyTaskManager
                 db.AddTask(taskName, taskDescription);
                 Tasks = db.GetTasks();
                 taskDataGrid.ItemsSource = Tasks;
+                taskNameBox.Text = "";
+                descriptionBox.Text = "";
 
             }
         }
@@ -56,6 +58,8 @@ namespace MyTaskManager
                 db.UpdateTask(task.Id, taskNameBox.Text, descriptionBox.Text);
                 Tasks = db.GetTasks();
                 taskDataGrid.ItemsSource = Tasks;
+                taskNameBox.Text = "";
+                descriptionBox.Text = "";
             }
 
         }
@@ -68,6 +72,8 @@ namespace MyTaskManager
                 db.DeleteTask(task.Id);
                 Tasks = db.GetTasks();
                 taskDataGrid.ItemsSource = Tasks;
+                taskNameBox.Text = "";
+                descriptionBox.Text = "";
             }
         }
 

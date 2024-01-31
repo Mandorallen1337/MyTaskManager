@@ -27,7 +27,7 @@ namespace MyTaskManager
         {
             InitializeComponent();
             
-            List<Object> userTasks = db.GetUserTasks();
+            List<Object> userTasks = db.GetUserTasksAndCategory();
             projectDataGrid.ItemsSource = userTasks;            
         }
 
@@ -39,6 +39,7 @@ namespace MyTaskManager
             {
                 string search = searchBox.Text;
                 db.SearchDataBase(search);
+                searchBox.Text = "";
                 
             }
 
