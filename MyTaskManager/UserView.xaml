@@ -146,6 +146,18 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
 
                 <Button x:Name="updateButton"
@@ -166,7 +178,18 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
 
                 <Button x:Name="deleteButton"
@@ -187,15 +210,21 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
 
             </StackPanel>
-
-
-
         </Grid>
-
-
     </Border>
-
 </UserControl>

@@ -36,7 +36,7 @@ namespace MyTaskManager
                 DatabaseConnection db = new DatabaseConnection();
                 db.AddCategory(categoryBox.Text);
                 MessageBox.Show("Category added successfully!");
-                //Refresh the datagrid
+                //Refresh the datagrid and clear the textbox.
                 Categories = db.GetCategories();
                 CategoryDataGrid.ItemsSource = Categories;
                 categoryBox.Text = "";
@@ -55,6 +55,7 @@ namespace MyTaskManager
                 Category category = (Category)CategoryDataGrid.SelectedItem;
                 db.UpdateCategory(category.Id, categoryBox.Text);
                 MessageBox.Show("Category updated successfully!");
+                //Refresh the datagrid and clear the textbox.
                 Categories = db.GetCategories();
                 CategoryDataGrid.ItemsSource = Categories;
                 categoryBox.Text = "";
@@ -82,6 +83,7 @@ namespace MyTaskManager
                 Category category = (Category)CategoryDataGrid.SelectedItem;
                 db.DeleteCategory(category.Id);
                 MessageBox.Show("Category deleted successfully!");
+                //Refresh the datagrid and clear the textbox.
                 Categories = db.GetCategories();
                 CategoryDataGrid.ItemsSource = Categories;
                 categoryBox.Text = "";

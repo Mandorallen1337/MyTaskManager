@@ -98,7 +98,19 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             
             <StackPanel Grid.Row="4" 
                         Grid.Column="1" 

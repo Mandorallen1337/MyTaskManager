@@ -13,8 +13,10 @@ namespace MyTaskManager
     {
         string server = "localhost";
         string database = "task_management";
-        string uid = "root";
-        string password = "ripper1337";
+        string uid = "restricted";
+        string password = "1234";
+        //string uid = "root";
+        //string password = "ripper1337";
 
         public string connectionString;
         MySqlConnection connection;
@@ -39,7 +41,8 @@ namespace MyTaskManager
                     using (MySqlCommand cmd = new MySqlCommand())
                     {
                         cmd.Connection = db;
-                        cmd.CommandText = "SELECT * FROM users WHERE username = @username AND password = @password";
+                        //using view to get username and password from database.
+                        cmd.CommandText = "SELECT * FROM user_login_view WHERE username = @username AND password = @password";
                         cmd.Parameters.AddWithValue("@username", username);
                         cmd.Parameters.AddWithValue("@password", password);
 
@@ -87,12 +90,7 @@ namespace MyTaskManager
             return users;
         }
 
-        private MySqlDataReader RunQuery(string query, MySqlConnection connection)
-        {
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            return reader;
-        }
+        
         public List<Task> GetTasks()
         {
             List<Task> tasks = new List<Task>();
@@ -121,7 +119,7 @@ namespace MyTaskManager
             }
             return tasks;
         }
-        //Add user if username is not taken.
+        
         public bool AddUser(string username, string password, string email)
         {
             bool userAdded = false;
@@ -306,25 +304,10 @@ namespace MyTaskManager
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-
-                string sql = "SELECT " +
-                             "tasks.task_id, " +
-                             "tasks.task_name, " +
-                             "tasks.task_description, " +
-                             "users.user_id, " +
-                             "users.username, " +
-                             "users.email, " +
-                             "category.category_name " +  
-                             "FROM " +
-                             "tasks " +
-                             "JOIN " +
-                             "task_user ON tasks.task_id = task_user.task_id " +
-                             "JOIN " +
-                             "users ON task_user.user_id = users.user_id " +
-                             "JOIN " +
-                             "category ON task_user.category_id = category.category_id;"; 
                 
-                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                //Gets stored procedure from database.
+                MySqlCommand cmd = new MySqlCommand("GetUserTasksAndCategory", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -533,6 +516,7 @@ namespace MyTaskManager
             }
         }
 
+        //get all connections from link table.
        public List<Connection> GetConnections()
         {
             List<Connection> connections = new List<Connection>();

@@ -16,6 +16,7 @@
     <Border CornerRadius="50">
         <Border.Background>
             <ImageBrush ImageSource="/Images/minion.jpg"/>
+
         </Border.Background>
         
     <Border BorderThickness="5"
@@ -136,7 +137,8 @@
                         FontWeight="Bold"
                         FontSize="16"                        
                         FontFamily="Montserrat"
-                        Cursor="Hand" Click="userViewButton_Click">
+                        Cursor="Hand" 
+                        Click="userViewButton_Click">
 
                     <Button.Style>
                         <Style TargetType="Button">
@@ -148,7 +150,18 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>                    
+                    </Button>
                 <Button x:Name="taskViewButton"
                         Content="Task Menu"
                         FontWeight="Bold"
@@ -168,7 +181,19 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 <Button x:Name="CategoryViewButton"
                         Content="Category Menu"
                         FontWeight="Bold"
@@ -188,7 +213,19 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 <Button x:Name="connectButton"
                         Content="Connect Menu"
                         FontWeight="Bold"
@@ -208,7 +245,19 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
                 <Button x:Name="projectViewButton"
                         Content="Project Menu"
@@ -229,7 +278,19 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 <Button x:Name="logoutButton"
                     Content="Logout"
                     FontWeight="Bold"
@@ -249,7 +310,19 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
 
             </StackPanel>

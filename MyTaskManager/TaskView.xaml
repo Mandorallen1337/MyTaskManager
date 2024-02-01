@@ -125,7 +125,7 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#da34ae"/>
-                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Foreground" Value="Black"/>                            
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#278bef"/>
@@ -133,6 +133,18 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
 
                 <Button x:Name="updateButton"
@@ -153,6 +165,18 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
 
                 </Button>
 
@@ -174,11 +198,21 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
-                
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>                
 
             </StackPanel>            
-
         </Grid>
     </Border>
 </UserControl>

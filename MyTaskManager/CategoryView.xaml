@@ -62,8 +62,7 @@
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#462Ad8"/>
                         <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                        <Setter Property="FontWeight" Value="Bold"/>                        
                         <Setter Property="BorderBrush" Value="White"/>
                         <Setter Property="Margin" Value="5,0,5,0"/>                                            
                     </Style>
@@ -115,7 +114,19 @@
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
-                    </Button>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
                     <Button x:Name="updateButton"
                         Content="Update"
@@ -134,8 +145,20 @@
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
 
-                    </Button>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
 
                     <Button x:Name="deleteButton"
                             Content="Delete"
@@ -155,7 +178,19 @@
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
-                    </Button>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
                 </StackPanel>
 
