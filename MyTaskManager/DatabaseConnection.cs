@@ -15,8 +15,7 @@ namespace MyTaskManager
         string database = "task_management";
         string uid = "restricted";
         string password = "1234";
-        //string uid = "root";
-        //string password = "ripper1337";
+        
 
         public string connectionString;
         MySqlConnection connection;
