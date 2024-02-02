@@ -44,10 +44,10 @@
                    <ColumnDefinition Width="25"/>
                    <ColumnDefinition Width="10"/>
                </Grid.ColumnDefinitions>
-                <TextBlock Text="Task Manager Login Page."
-                           Foreground="DarkGray"
+                <TextBlock Text="Johnny Fernelids Task Manager."
+                           Foreground="#da34ae"
                            FontSize="16"
-                           FontFamily="Montserrat"
+                           FontWeight="Bold"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            Margin="20,0,0,0"/>
@@ -154,6 +154,7 @@
                          VerticalAlignment="Center"
                          Margin="0,5,0,0">
                     
+                    
                 </TextBox>
 
                 <TextBlock Text="Password"
@@ -162,6 +163,8 @@
                            FontWeight="Medium"
                            FontFamily="Montserrat"
                            HorizontalAlignment="Left"/>
+
+
 
                 <PasswordBox x:Name="passwordBox"
                          FontSize="13"
@@ -173,8 +176,8 @@
                          BorderThickness="0,0,0,1"
                          Height="28"
                          VerticalAlignment="Center"
-                         Margin="0,5,0,0">
-
+                         Margin="0,5,0,0">                    
+                
                 </PasswordBox>
 
                 <Button x:Name="loginBtn"
@@ -188,7 +191,7 @@
                         Width="100"
                         Height="30"
                         Margin="0,20,0,0"
-                        Click="loginBtn_Click">
+                        Click="loginBtn_Click">                    
 
                     <Button.Style>
                         <Style TargetType="Button">
@@ -212,6 +215,8 @@
 
                         </ControlTemplate>
                     </Button.Template>
+                    
+                         
                 </Button>
 
 
